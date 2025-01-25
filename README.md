@@ -10,3 +10,6 @@ Another option was to set environmental variables, but this made the process mor
 
 CrowdstrikeAutoInstallerV2.ps1 helps with the security issue by storing the API keys in a config file. This config file is stored in the cloud securely in our company's enterprise licensed Google Drive. Only employees have access to the said file.
 The script creates a temporarily location for both the Crowdstrike installer and the config file. The script draws the API keys from the config file, then proceeds to install Crowdstrike, retrieve the hostname and the AID. The output is left in the command-line for the agent to copy and record in their tickets.
+
+26/01/25 Ran into issues with device policy. Set execution policy to RemoteSigned, but may run into issues with Mark of The Web (MoTW). 
+Looking to test MoTW issues when testing script on device once security team is willing to share access to API Keys from Crowdstrike portal...
