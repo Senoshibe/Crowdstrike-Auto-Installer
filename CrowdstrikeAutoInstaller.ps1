@@ -98,3 +98,5 @@ try {
         Write-Log "Temporary installer removed."
     }
 }
+#Run following command in Powershell:
+#.\Install-FalconSensor.ps1 -FalconClientId "your-client-id" -FalconClientSecret "your-client-secret" -SensorUpdatePolicyName "default_policy"

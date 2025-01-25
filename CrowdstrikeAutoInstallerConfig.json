@@ -1,0 +1,5 @@
+{
+    "FalconClientId": "your-client-id",
+    "FalconClientSecret": "your-client-secret",
+    "SensorUpdatePolicyName": "default_policy"
+}
