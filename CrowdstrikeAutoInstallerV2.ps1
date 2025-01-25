@@ -1,3 +1,6 @@
+# Set execution policy for the current session to RemoteSigned
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
+
 # Direct download link for Crowdstrike installer exe. file shared on Google Drive.
 [string] $InstallerDownloadUrl = "https://drive.google.com/uc?id=1-OP5MJSRkVUlvrrLaEQwrA9FSW3s9SnW&export=download"
 
