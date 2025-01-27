@@ -9,7 +9,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
 
 # Temporary paths to store the downloaded installer and config file
 [string] $TempInstallerPath = "$env:TEMP\WindowsSensor.exe"
-[string] $TempConfigPath = "$env:TEMP\config.json"
+[string] $TempConfigPath = "$env:TEMP\CrowdstrikeAutoInstallerConfig.json"
 
 # Function to log messages
 function Write-Log {
