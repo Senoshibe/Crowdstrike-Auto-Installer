@@ -60,21 +60,31 @@ function Wait-ForService {
 
 # Function to install the Falcon sensor
 function Install-FalconSensor {
-    Write-Log "Installing Falcon sensor..."
+    Write-Log "Starting Falcon sensor installation..."
     if (-Not (Test-Path $TempInstallerPath)) {
         Write-Log "Installer not found at $TempInstallerPath."
         throw "Installer missing."
     }
-    Start-Process -FilePath $TempInstallerPath -ArgumentList "/install /quiet" -Wait
-    Write-Log "Falcon sensor installation complete."
+    try {
+        $CustomerID = "YourCustomerID"  # Replace with your actual Customer ID
+        Write-Log "Running installer with Customer ID..."
+        Start-Process -FilePath $TempInstallerPath -ArgumentList "/install /quiet CID=$CustomerID" -Wait
+        Write-Log "Installer finished running."
+    } catch {
+        Write-Log "Error during installation: $_"
+        throw "Installer execution failed."
+    }
 
-    # Wait for the Falcon service to start
+    # Check if the service is installed after the installer runs
     $ServiceName = "CSFalconService"
-    if (-Not (Wait-ForService -ServiceName $ServiceName)) {
-        throw "Falcon service failed to start."
+    $Service = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
+    if (-Not $Service) {
+        Write-Log "Service '$ServiceName' not found after installation."
+        throw "Falcon sensor service not installed."
+    } else {
+        Write-Log "Service '$ServiceName' installed and running."
     }
 }
-
 
 # Function to retrieve the hostname
 function Get-Hostname {
