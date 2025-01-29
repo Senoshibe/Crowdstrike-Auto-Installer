@@ -106,8 +106,4 @@ try {
         Remove-Item -Path $TempInstallerPath -Force
         Write-Log "Temporary installer removed."
     }
-    if (Test-Path $TempConfigPath) {
-        Remove-Item -Path $TempConfigPath -Force
-        Write-Log "Temporary config file removed."
-    }
 }
