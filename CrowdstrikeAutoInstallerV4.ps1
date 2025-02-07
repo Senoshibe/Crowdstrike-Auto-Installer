@@ -2,7 +2,7 @@
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process -Force
 
 # Direct download link for Crowdstrike installer exe. file shared on Google Drive.
-[string] $InstallerDownloadUrl = "https://drive.google.com/uc?id=1-OP5MJSRkVUlvrrLaEQwrA9FSW3s9SnW&export=download"
+[string] $InstallerDownloadUrl = "https://drive.google.com/uc?export=download&id=1jgqtWqXIOITXjouf5MpTPDrTEEokjVMU"
 
 # Temporary paths to store the downloaded installer
 [string] $TempInstallerPath = "$env:TEMP\WindowsSensor.exe"
