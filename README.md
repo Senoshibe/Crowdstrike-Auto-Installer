@@ -17,3 +17,6 @@ Looking to test MoTW issues when testing script on device once security team is 
 28/01/25 Spoke with the Cyber Security team. Currently experiencing difficulties getting API access. Spoke with one of their Security Analysts and Head of Security and supposedly the WindowSensor exe. file automatically checks the sensor update policy, so the configuration file is not needed. Looking to improve the code with a 3rd version without the config calls and sensor update policy function...
 
 07/02/2025 Came across issue where after calling the Download-File function, the WindowsSensor exe. file doesn't completely download (file was only 3KB big as opposed to the usual size of 153M. After some research, it seems Google Drive links are known to sometimes redirect to a different URL to handle large file downloads. the Invoke-Webrequest call won't handle the redirection properly... use -AllowUnencryptedAuthentication flag for handling the redirect.
+
+07/02/2025 Now having trouble bypassing the 'This file is too large for Google to scan for viruses.' warning. Have explored possible fixes like in this article: https://www.marstranslation.com/blog/how-to-skip-google-drive-virus-scan-warning-about-large-files
+According to research it seems impossible to bypass this warning. Looking to use the link from Crowdstrike installer page instead.
