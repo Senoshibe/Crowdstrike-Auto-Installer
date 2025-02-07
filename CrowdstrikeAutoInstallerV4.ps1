@@ -29,6 +29,7 @@ function Download-File {
         # Adding the header User-Agent = "Mozilla/5.0" mimics a browser request. Sometimes, Google Drive might check the User-Agent to ensure the request is coming from the web browser.
         # Ensure the content is written to the desintation path
         $response.Content | Out-File -FilePath $DestinationPath -Force
+        Write-Log "Final download URL: $($response.BaseResponse.ResponseUri.AbsoluteUri)"
         Write-Log "Download complete: $DestinationPath"
     } catch {
         Write-Log "Failed to download file: $_"
