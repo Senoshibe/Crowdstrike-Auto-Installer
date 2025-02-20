@@ -2,10 +2,10 @@
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process -Force
 
 # Direct download link for Crowdstrike installer exe. file shared on Google Drive.
-[string] $InstallerDownloadUrl = "https://drive.google.com/uc?export=download&id=1jgqtWqXIOITXjouf5MpTPDrTEEokjVMU"
+[string] $InstallerDownloadUrl = "https://www.dropbox.com/scl/fi/7bmmnchaob17qthczv85x/FalconSensor_Windows.exe?rlkey=1comfzf6svpr9e93t2wrbv9zz&st=vtrd14hs&dl=1"
 
 # Temporary paths to store the downloaded installer
-[string] $TempInstallerPath = "$env:TEMP\WindowsSensor.exe"
+[string] $TempInstallerPath = "$env:TEMP\FalconSensor_Windows.exe"
 
 # Function to log messages
 function Write-Log {
@@ -41,7 +41,7 @@ function Download-File {
 function Wait-ForService {
     param (
         [string] $ServiceName
-    )
+    )-
     Write-Log "Waiting for service '$ServiceName' to start..."
     $MaxAttempts = 30   # Max number of attempts
     $WaitTime = 5       # Time to wait between checks (in seconds)
