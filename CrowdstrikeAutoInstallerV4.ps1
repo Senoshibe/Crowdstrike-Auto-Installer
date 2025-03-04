@@ -41,7 +41,7 @@ function Download-File {
 function Wait-ForService {
     param (
         [string] $ServiceName
-    )-
+    )
     Write-Log "Waiting for service '$ServiceName' to start..."
     $MaxAttempts = 30   # Max number of attempts
     $WaitTime = 5       # Time to wait between checks (in seconds)
