@@ -68,7 +68,7 @@ function Install-FalconSensor {
     try {
         $CustomerID = "26D3E3798219457ABA974E6DE7B52432-53"  # Replace with your actual Customer ID
         Write-Log "Running installer with Customer ID..."
-        Start-Process -FilePath $TempInstallerPath -ArgumentList "/install /quiet CID=$CustomerID" -Wait
+        Start-Process -FilePath $TempInstallerPath -ArgumentList "/install /quiet /norestart CID=$CustomerID" -Wait
         Write-Log "Installer finished running."
     } catch {
         Write-Log "Error during installation: $_"
