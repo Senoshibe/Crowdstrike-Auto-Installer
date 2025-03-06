@@ -132,15 +132,8 @@ function Get-AgentID {
         Start-Sleep -Seconds 30
 
         # Use REG QUERY to retrieve the Agent ID (AID)
-        $regOutput = reg query "HKLM\System\CurrentControlSet\Services\CSAgent\Sim" /f AG
-
-        #Output of REG QUERY for debugging
-        Write-Log "REG QUERY Output: $regOutput"
-
-        # Extract AID from output
-        $AID = $regOutput -match "AG\s+REG_BINARY\s+(\S+)" | Out-Null; $matches[1]
+        $AID = reg query "HKLM\System\CurrentControlSet\Services\CSAgent\Sim" /f AG
         
-        Write-Log "Agent ID (AID): $AID"
         return $AID
     } catch {
         Write-Log "Failed to retrieve Agent ID: $_"
@@ -166,7 +159,7 @@ try {
     # Output results
     Write-Log "Installation completed successfully!"
     Write-Log "Hostname: $Hostname"
-    Write-Log "Agent ID (AID): $AgentID"
+    Write-Log "Retrieve Agent ID (AID): $AID"
 } finally {
     # Clean up the temporary files after installation
     if (Test-Path $TempInstallerPath) {
