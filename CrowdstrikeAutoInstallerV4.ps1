@@ -131,10 +131,6 @@ function Get-AgentID {
         Write-Log "Waiting for Falcon sensor to fully initialize..."
         Start-Sleep -Seconds 30
 
-        # Use REG QUERY to retrieve the Agent ID (AID)
-        $AID = reg query "HKLM\System\CurrentControlSet\Services\CSAgent\Sim" /f AG
-        
-        return $AID
     } catch {
         Write-Log "Failed to retrieve Agent ID: $_"
         throw "Failed to get Agent ID (AID)."
@@ -159,7 +155,7 @@ try {
     # Output results
     Write-Log "Installation completed successfully!"
     Write-Log "Hostname: $Hostname"
-    Write-Log "Retrieve Agent ID (AID): $AID"
+    reg query "HKLM\System\CurrentControlSet\Services\CSAgent\Sim" /f AG
 } finally {
     # Clean up the temporary files after installation
     if (Test-Path $TempInstallerPath) {
