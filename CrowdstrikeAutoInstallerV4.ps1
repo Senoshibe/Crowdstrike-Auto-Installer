@@ -134,6 +134,9 @@ function Get-AgentID {
         # Use REG QUERY to retrieve the Agent ID (AID)
         $regOutput = reg query "HKLM\System\CurrentControlSet\Services\CSAgent\Sim" /f AG
 
+        #Output of REG QUERY for debugging
+        Write-Log "REG QUERY Output: $regOutput"
+
         # Extract AID from output
         $AID = $regOutput -match "AG\s+(\S+)" | Out-Null; $matches[1]
         
