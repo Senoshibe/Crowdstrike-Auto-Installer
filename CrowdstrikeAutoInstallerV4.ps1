@@ -127,6 +127,10 @@ function Get-AgentID {
             throw "Falcon sensor service not running after $($MaxAttempts * $WaitTime) seconds."
         }
 
+        #Add wait time to ensure Falcon sensor is initialized fully
+        Write-Log "Waiting for Falcon sensor to fully initialize..."
+        Start-Sleep -Seconds 30
+
         # Check for Agent ID in registry
         $RegistryPath = "HKLM:\SYSTEM\CurrentControlSet\Services\CSAgent\Sim"
         $AID = (Get-ItemProperty -Path $RegistryPath -Name "AG" -ErrorAction Stop).AID
