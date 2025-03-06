@@ -105,11 +105,26 @@ function Get-AgentID {
     try {
         # Ensure Falcon sensor service is running
         $ServiceName = "CSFalconService"
-        if ((Get-Service -Name $ServiceName -ErrorAction SilentlyContinue).Status -ne "Running") {
-            Write-Log "Falcon sensor service is not running. Starting it now..."
-            Start-Service -Name $ServiceName
-            Start-Sleep -Seconds 10
-            #This may cause problems if server takes longer than 10 seconds to connect.... possibly adding loop?
+
+        #Wait for the service to start (check every 5 seconds)
+        $MaxAttempts = 12 
+        $WaitTime = 5
+
+        $Attempts = 0
+        while ($Attempts -lt $MaxAttempts) {
+            $Service = Get-Service -Name $ServiceName -ErrorAction SilentlyContinue
+            if ($Service -and $Service.Status -eq "Running") {
+                Write-Log "Falcon sensor service is running."
+                break
+            }
+            $Attempts++
+            Write-Log "Attempt $Attempts of $MaxAttempts. Waiting for service to start..."
+            Start-Sleep -Seconds $WaitTime
+        }
+
+        if ($Attempts -ge $MaxAttempts) {
+            Write-Log "Falcon sensor service did not start within the expected time."
+            throw "Falcon sensor service not running after $($MaxAttempts * $WaitTime) seconds."
         }
 
         # Check for Agent ID in registry
