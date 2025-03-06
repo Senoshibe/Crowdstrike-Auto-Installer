@@ -138,7 +138,7 @@ function Get-AgentID {
         Write-Log "REG QUERY Output: $regOutput"
 
         # Extract AID from output
-        $AID = $regOutput -match "AG\s+(\S+)" | Out-Null; $matches[1]
+        $AID = $regOutput -match "AG\s+REG_BINARY\s+(\S+)" | Out-Null; $matches[1]
         
         Write-Log "Agent ID (AID): $AID"
         return $AID
