@@ -113,8 +113,8 @@ function Get-AgentID {
         }
 
         # Check for Agent ID in registry
-        $RegistryPath = "HKLM:\SOFTWARE\CrowdStrike\Agent"
-        $AID = (Get-ItemProperty -Path $RegistryPath).AID
+        $RegistryPath = "HKLM:\System\CurrentControlSet\services\CSAgent\Sim"
+        $AID = (Get-ItemProperty -Path $RegistryPath -Name "AG" -ErrorAction Stop).AID
         Write-Log "Agent ID (AID): $AID"
         return $AID
     } catch {
