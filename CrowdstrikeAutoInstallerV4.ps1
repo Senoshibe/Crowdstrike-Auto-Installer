@@ -113,7 +113,7 @@ function Get-AgentID {
         }
 
         # Check for Agent ID in registry
-        $RegistryPath = "HKLM:\System\CurrentControlSet\services\CSAgent\Sim"
+        $RegistryPath = "HKLM:\SYSTEM\CurrentControlSet\Services\CSAgent\Sim"
         $AID = (Get-ItemProperty -Path $RegistryPath -Name "AG" -ErrorAction Stop).AID
         Write-Log "Agent ID (AID): $AID"
         return $AID
