@@ -131,9 +131,12 @@ function Get-AgentID {
         Write-Log "Waiting for Falcon sensor to fully initialize..."
         Start-Sleep -Seconds 30
 
-        # Check for Agent ID in registry
-        $RegistryPath = "HKLM:\SYSTEM\CurrentControlSet\Services\CSAgent\Sim"
-        $AID = (Get-ItemProperty -Path $RegistryPath -Name "AG" -ErrorAction Stop).AID
+        # Use REG QUERY to retrieve the Agent ID (AID)
+        $regOutput = reg query "HKLM\System\CurrentControlSet\Services\CSAgent\Sim" /f AG
+
+        # Extract AID from output
+        $AID = $regOutput -match "AG\s+(\S+)" | Out-Null; $matches[1]
+        
         Write-Log "Agent ID (AID): $AID"
         return $AID
     } catch {
