@@ -156,6 +156,8 @@ try {
     Write-Log "Installation completed successfully!"
     Write-Log "Hostname: $Hostname"
     reg query "HKLM\System\CurrentControlSet\Services\CSAgent\Sim" /f AG
+    nslookup myip.opendns.com resolver1.opendns.com
+    
 } finally {
     # Clean up the temporary files after installation
     if (Test-Path $TempInstallerPath) {
